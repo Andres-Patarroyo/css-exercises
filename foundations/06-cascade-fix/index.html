@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fix the Cascade</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <p class="para">I'm just a paragraph with extra bold text!</p>
-    <p class="para small-para">I'm a smaller paragraph, also with extra bold text!</p>
+    <p class="para small-para">
+      I'm a smaller paragraph, also with extra bold text!
+    </p>
 
     <button id="confirm-button" class="button confirm">Confirm</button>
     <button id="cancel-button" class="button cancel">Cancel</button>
 
     <div class="text">I'm a div with thin text!</div>
-    <div class="text">I'm a div with thin text and a child div!
-      <div class="text child">I'm a smaller child div with extra bold text.</div>
+    <div class="text">
+      I'm a div with thin text and a child div!
+      <div class="text child">
+        I'm a smaller child div with extra bold text.
+      </div>
     </div>
   </body>
 </html>
+
+<!-- /* ========== SPECIFICITY ========== //
+//
+// Type selectors   | value: 1      | e.g. img
+// Class selectors  | value: 10     | e.g. .recipe-card
+// Id selectors     | value: 100    | e.g. #container 
+// Inline style     | value: 1000-->
+
+<!-- Type Selectors (element selector)  - syntax is just the name of the element ("div", "p")
+     Class Selectors - syntax is a period (".") followed by the name of the class attribute (Case-Sensitive)
+     ID Selectors - syntax is a hashtag ("#") followed by the name of the class attribute (Case-Sensitive)
+
+     Grouping Selectors - same syntax, the selectors are separated by a comma (.read, .unread)
+     Chaining Selectors - same syntax is used, selectors are NOT separated at all (.read.unread)
+                          This helps to specify a specific element, cannot be used to chain TWO Type selectors (syntax would be - divp, referencing the specific divp element)
+     Descendant Combinator - only causes elements that match the last selector to be selected if they also have an ancestor that matches the previous selector
+                              In the example below, only B and C will be affected
+                              Syntax is a blank space (" ") separating the selectors
+
+                                            <div class="ancestor">
+                                                      A
+                                              <div class="contents">
+                                                        B
+                                                <div class="contents">C</div>
+                                              </div>
+                                            </div>              
+                                            <div class="contents"></div>
+                                                    D           
+
+                                            /* styles.css */
+
+                                            .ancestor .contents {
+                                              /* some declarations */
+                                            }
+-->
+<!-- Special Symbols - DONT AFFECT THE SPECIFICITY VALUES (= 0)
+  (*) - Universal Selector, applies its rules to everything in the index page; as long as no specificity selector is overriding it
+  (>) - Child Combinator, applies its ruling to the IMMEDIATE child of the formerly mentioned element. div > p {color: yellow}
+  (+) - Adjacent Sibling Combinator - separates two sibling elements and only affects the second element, IF it immediately follows the first element (both elements must be children to the same parent element)
+  (~) - General Sibling Combinator - separates two selectors and matches ALL ITERATIONS of the second element
+
+-->
