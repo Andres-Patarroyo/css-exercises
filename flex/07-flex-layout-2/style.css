@@ -1,5 +1,6 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   min-height: 100vh;
 }
@@ -24,6 +25,88 @@ body {
 
 .card {
   border: 1px solid #eee;
-  box-shadow: 2px 4px 16px rgba(0,0,0,.06);
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
 }
+
+/* ### Self Check
+- xxxx  The header text is size 32px and weight 900. xxxx
+- xxxx  The header text is vertically centered and 16px from the edge of the screen. xxx 
+- xxxx  The footer is pushed to the bottom of the screen (the footer may go _below_ the bottom of the screen if the content of the 'cards' section overflows and/or if your screen is shorter).
+- xxxx  The footer text is centered horizontally and vertically.
+- xxxx  The sidebar and cards take up all available space above the footer.
+- xxxx  The sidebar is 300px wide (and it doesn't shrink).
+- xxxx  The sidebar links are size 24px, are white, and do not have the underline text decoration.
+- xxxx  The sidebar has 16px padding.
+- xxxx  There is 32px padding around the 'cards' section.
+- xxxx  The cards are arranged horizontally, but wrap to multiple lines when they run out of room on the page.
+
+### Hints
+- You will need to change the flex-direction to push the footer down.
+- You will need to add some divs as containers to get things to line up correctly.
+- `flex-wrap` will help get the cards aligned correctly.
+-  Make sure you define how much space the cards should take up, in order for `flex-wrap` to work as intended. */
+
+body {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; 
+  
+    not needed as .main { flex: auto (or) 1;} fixes it*/
+}
+/* .main = .body in solution.css */
+.main {
+  display: flex;
+  flex: auto; /*should be 1, why? */
+}
+
+.header {
+  display: flex;
+  font-size: 32px;
+  font-weight: 900;
+  align-items: center;
+  padding-left: 16px;
+}
+
+.sidebar {
+  flex-shrink: 0;
+  /* align-items: stretch;   not needed same as above */
+  padding: 16px;
+}
+/* .cards = .container in solution.css */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 32px;
+  gap: 20px; /*no gap in solution because margin was used instead */
+}
+.card {
+  max-width: 300px; /* should have been width: 300px; */
+  padding: 20px;
+}
+
+.footer {
+  display: flex;
+  /* flex-direction: column; not necessary once again same reason as above */
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #eee;
+  font-size: 24px;
+}
+
+/* li {
+  margin-bottom: 16px;
+} 
+useful to space out the list items vertically
+thought about it but didnt implement :/
+*/
